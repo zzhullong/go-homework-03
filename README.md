@@ -5,21 +5,34 @@
 
 项目结构：
 env 环境变量
+
+
 config
     基础相关配置，包括配置和读取
+
+    
 internal 
     dao，model，service 分层设计
+
+    
 pkg/db
     全局DB初始化
+
 
 注意事项：
 1.环境适配
 windows/macOS 支持的db驱动不一样， windows支持github.com/glebarez/go-sqlite  macOS和linux支持gorm.io/driver/sqlite
 
+
 如要适配当前操作系统环境， 有几个文件需要修改一下：
 
+
 go.mod require地址修改对应地址
+
+
 homework03_test.go import修改对应包
+
+
 pkg/db/db.go   import修改对应包
 
 
