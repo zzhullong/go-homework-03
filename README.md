@@ -9,14 +9,17 @@ env 环境变量
 
 
 config
+
     基础相关配置，包括配置和读取
 
     
 internal 
+
     dao，model，service 分层设计
 
     
 pkg/db
+
     全局DB初始化
 
 
