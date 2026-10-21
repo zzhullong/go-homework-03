@@ -39,6 +39,7 @@ pkg/db/db.go   import修改对应包
 
 验证方式:
 1.homework03_main.go 创建数据，查询数据
+
 2.homework03_test.go  test题目123通过性
 
 
