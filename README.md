@@ -4,6 +4,7 @@
 
 
 项目结构：
+
 env 环境变量
 
 
@@ -20,7 +21,9 @@ pkg/db
 
 
 注意事项：
+
 1.环境适配
+
 windows/macOS 支持的db驱动不一样， windows支持github.com/glebarez/go-sqlite  macOS和linux支持gorm.io/driver/sqlite
 
 
@@ -38,6 +41,7 @@ pkg/db/db.go   import修改对应包
 
 
 验证方式:
+
 1.homework03_main.go 创建数据，查询数据
 
 2.homework03_test.go  test题目123通过性
