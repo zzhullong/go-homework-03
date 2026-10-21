@@ -1,0 +1,3 @@
+db:
+  driver: sqlite
+  dsn: "myblog.db"
