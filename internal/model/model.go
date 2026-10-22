@@ -1,6 +1,8 @@
 package model
 
 import (
+	"errors"
+
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -79,6 +81,25 @@ func (c *Comment) BeforeDelete(tx *gorm.DB) (err error) {
 	//增加判断是否已经软删除了，如果软删除的话，不再触发钩子进行-1,默认软删除就会有deleteat时间
 	if post.DeletedAt.Valid {
 		return nil
+	}
+
+	// 物理删除后行消失，查询判断是否存在
+	var tmp Comment
+	if err := tx.Select("id").Take(&tmp, c.ID).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+
+
+		// 标记本次是否是物理删除（Unscoped删除）
+	isPhysicalDelete := tx.Statement.Unscoped
+	// 首次物理删除：物理删除 + 删除前记录存在、且未软删
+	isFirstPhysicalDelete := isPhysicalDelete && !c.DeletedAt.Valid
+
+	if !isFirstPhysicalDelete {
+		
 	}
 
 	err = tx.Clauses(clause.Locking{Strength: "UPDATE"}).First(&post, c.PostID).Error
