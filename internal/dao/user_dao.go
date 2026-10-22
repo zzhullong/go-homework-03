@@ -12,7 +12,7 @@ func NewUserDao() *UserDao {
 }
 
 // GetUserWithPostsAndComments 根据用户ID 查询用户，预加载文章和文章评论（一对多）
-func (d *UserDao) GetUserWithPostsAndComments(uid int) (*model.User, error) {
+func (d *UserDao) GetUserWithPostsAndComments(uid uint) (*model.User, error) {
 	var user model.User
 	// Preload 嵌套预加载 Posts.Comments
 	err := db.DB.Preload("Posts.Comments").First(&user, uid).Error
@@ -28,7 +28,7 @@ func (d *UserDao) CreateUser(user *model.User) error {
 	return db.DB.Create(user).Error
 }
 
-func (d *UserDao) DeleteUser(id int) error {
+func (d *UserDao) DeleteUser(id uint) error {
 	return db.DB.Delete(&model.User{}, id).Error
 }
 

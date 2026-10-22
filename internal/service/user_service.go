@@ -15,7 +15,7 @@ func NewUserService() *UserService {
 	}
 }
 
-func (s *UserService) GetUserWithPostsAndComments(uid int) (*model.User, error) {
+func (s *UserService) GetUserWithPostsAndComments(uid uint) (*model.User, error) {
 	return s.userDao.GetUserWithPostsAndComments(uid)
 }
 
@@ -28,6 +28,6 @@ func (s *UserService) CreateUser(username, password string) (*model.User, error)
 	return user, err
 }
 
-func (s *UserService) DeleteUser(userId int) error {
+func (s *UserService) DeleteUser(userId uint) error {
 	return s.userDao.DeleteUser(userId)
 }

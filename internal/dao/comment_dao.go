@@ -19,7 +19,7 @@ func (d *CommentDao) CreateComment(tx *gorm.DB,comment *model.Comment) error {
 }
 
 // DeleteComment 删除评论
-func (d *CommentDao) DeleteComment(commentId int) error {
+func (d *CommentDao) DeleteComment(commentId uint) error {
 	return db.DB.Delete(&model.Comment{}, commentId).Error
 }
 

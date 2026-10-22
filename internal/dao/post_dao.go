@@ -36,7 +36,7 @@ func (d *PostDao) GetMostCommentPost() (*model.Post, error) {
 }
 
 //  用户文章计数原子+N
-func (d *PostDao) IncArticleCount(tx *gorm.DB, postId int, num int) error {
+func (d *PostDao) IncArticleCount(tx *gorm.DB, postId uint, num int) error {
 	return tx.Model(&model.Post{}).
 		Where("id = ?", postId).
 		UpdateColumn("CommentCount", gorm.Expr("CommentCount + ?", num)).
@@ -50,7 +50,7 @@ func (d *PostDao) CreatePost(tx *gorm.DB, post *model.Post) error {
 }
 
 // GetPostByID 根据id获取文章
-func (d *PostDao) GetPostByID(postId int) (*model.Post, error) {
+func (d *PostDao) GetPostByID(postId uint) (*model.Post, error) {
 	var post model.Post
 	err := db.DB.First(&post, postId).Error
 	if err != nil {
@@ -60,6 +60,6 @@ func (d *PostDao) GetPostByID(postId int) (*model.Post, error) {
 }
 
 // DeletePost 软删除文章
-func (d *PostDao) DeletePost(id int) error {
+func (d *PostDao) DeletePost(id uint) error {
 	return db.DB.Delete(&model.Post{}, id).Error
 }

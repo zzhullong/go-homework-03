@@ -23,7 +23,7 @@ func (s *PostService) GetMostCommentPost() (*model.Post, error) {
 	return s.postDao.GetMostCommentPost()
 }
 
-func (s *PostService) CreatePost(title, content string, userId int) (*model.Post, error) {
+func (s *PostService) CreatePost(title, content string, userId uint) (*model.Post, error) {
 	tx := db.DB.Begin()
 	if tx.Error != nil {
 		return nil, tx.Error
@@ -51,10 +51,10 @@ func (s *PostService) CreatePost(title, content string, userId int) (*model.Post
 	return post, nil
 }
 
-func (s *PostService) GetPostByID(pid int) (*model.Post, error) {
+func (s *PostService) GetPostByID(pid uint) (*model.Post, error) {
 	return s.postDao.GetPostByID(pid)
 }
 
-func (s *PostService) DeletePost(postId int) error {
+func (s *PostService) DeletePost(postId uint) error {
 	return s.postDao.DeletePost(postId)
 }

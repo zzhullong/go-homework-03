@@ -54,7 +54,7 @@ for i := 1; i < 11; i++ {
 }
 
 for i := 1; i < 10; i++ {
-		comment1, err := commentSvc.CreateComment("写得很棒，学到了！",i)
+		comment1, err := commentSvc.CreateComment("写得很棒，学到了！",uint(i))
 	if err != nil {
 		log.Printf("创建评论失败：%v", err)
 		break

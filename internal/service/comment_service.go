@@ -18,7 +18,7 @@ func NewCommentService() *CommentService {
 	}
 }
 
-func (s *CommentService) CreateComment(content string, postId int) (*model.Comment, error) {
+func (s *CommentService) CreateComment(content string, postId uint) (*model.Comment, error) {
 	tx := db.DB.Begin()
 	if tx.Error != nil {
 		return nil, tx.Error
@@ -45,7 +45,7 @@ func (s *CommentService) CreateComment(content string, postId int) (*model.Comme
 	return comment, nil
 }
 
-func (s *CommentService) DeleteComment(cid int) error {
+func (s *CommentService) DeleteComment(cid uint) error {
 	return s.commentDao.DeleteComment(cid)
 }
 
